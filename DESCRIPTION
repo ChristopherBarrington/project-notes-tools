@@ -1,6 +1,6 @@
 Package: project.notes.tools
 Title: Tools for project-notes
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given='Christopher',
            family='Barrington',
