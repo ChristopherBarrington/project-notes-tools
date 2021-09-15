@@ -1,4 +1,4 @@
-# setup knitr
+#! setup knitr
 library(knitr)
 
 opts_knit$set(progress=TRUE, verbose=FALSE)
@@ -16,7 +16,7 @@ opts_template$set(r=list(),
                   hidden=list(echo=FALSE),
                   print_code=list(eval=FALSE))
 
-# modify plot hook to include a hyperlink to the output figures for each dev format
+#! modify plot hook to include a hyperlink to the output figures for each dev format
 local({
   original_plot_hook <- knitr::knit_hooks$get('plot')
   knitr::knit_hooks$set(plot=function(x, options) {
@@ -40,6 +40,6 @@ local({
 
     original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
 
-# setup custom engines
+#! setup custom engines
 knitr::knit_engines$set(method_section=function(options) {
   sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})

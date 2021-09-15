@@ -1,11 +1,10 @@
-# libraries to make bibliography
-# library(bibtex)
+#! libraries to make bibliography
 
 library(RefManageR)
 library(magrittr)
 
+#! write software/packages references
 
-# write a bibliography of loaded packages
 sessionInfo()$otherPkgs %>%
  sapply(purrr::pluck, 'Package') %>%
  base::subset(!grepl('helpr|projectData|datarepository|project.notes.tools', .)) %>%
