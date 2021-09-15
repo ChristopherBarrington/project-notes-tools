@@ -11,15 +11,15 @@ The below tabs show how the R environment was configured for this notebook.
 
 {{< tabs "session-information-tabset" >}}
 {{< tab "R session" >}}
-A session information file with package versions is available in [plain text](files/session_information.txt) and [yaml](files/session_information.yaml) formats and [bibliography](files/bibliography.bib) of software and R packages are available.
+A session information file with package versions is available in [plain text](files/session_information.txt) and [yaml](files/session_information.yaml) formats.
 
 The `conda` environment used to make this report was: ``r Sys.getenv('CONDA_PREFIX', unset='no conda environment prefix set!')``. 
 
 ```{r write_session_information, cache=FALSE, echo=FALSE}
 options(width=60)
 devtools::session_info() %T>%
-  yaml::write_yaml(file=file.path(knitting_path, 'files/session_information.yaml')) %>%
-  utils::capture.output(file=file.path(knitting_path, 'files/session_information.txt'))
+  yaml::write_yaml(file=file.path(knitting_path, 'files', 'session_information.yaml')) %>%
+  utils::capture.output(file=file.path(knitting_path, 'files', 'session_information.txt'))
 ```
 {{< /tab >}}
 
