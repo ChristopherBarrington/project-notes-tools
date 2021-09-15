@@ -1,5 +1,5 @@
 <!-- Session information, automatically generated. Files for environment/knitr chunks are respecified.  -->
-# Session information
+## Session information
 
 {{< callout "automated" >}}
 The session information is automatically generated.
