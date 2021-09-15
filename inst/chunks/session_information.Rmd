@@ -35,10 +35,10 @@ saved_objects %>%
 ```
 {{< /tab >}}
 
-{{< tab "Libraries" >}}
-The following libraries were loaded for this workbook:
+{{< tab "Packages" >}}
+The following packages were loaded for this workbook:
 
-```{r show_load_workbook_libraries, cache=FALSE, echo=TRUE, eval=FALSE, ref.label='load_workbook_libraries'}
+```{r show_load_workbook_packages, cache=FALSE, echo=TRUE, eval=FALSE, ref.label='load_workbook_packages'}
 ```
 
 <!-- For a complete list, with versions, see the files referenced above and the [bibliography](files/bibliography.bib) for citations. -->
