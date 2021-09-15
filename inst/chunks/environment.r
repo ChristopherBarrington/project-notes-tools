@@ -10,6 +10,7 @@ library(kableExtra)
 library(patchwork)
 library(openxlsx)
 library(rslurm)
+library(RefManageR)
 
 library(helpr)
 library(datarepository)

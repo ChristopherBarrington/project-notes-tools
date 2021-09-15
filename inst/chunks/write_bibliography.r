@@ -1,7 +1,3 @@
-#! libraries to make bibliography
-
-library(RefManageR)
-library(magrittr)
 
 #! write software/packages references
 
