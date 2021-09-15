@@ -1,19 +1,24 @@
 # libraries to make bibliography
-library(rcrossref)
 # library(bibtex)
+
+library(RefManageR)
 library(magrittr)
 
-dir.create(path='files', recursive=TRUE, showWarnings=FALSE)
 
 # write a bibliography of loaded packages
 sessionInfo()$otherPkgs %>%
-  sapply(purrr::pluck, 'Package') %>%
-  base::subset(!grepl('helpr|projectData|datarepository|project.notes.tools', .)) %>%
-  knitr::write_bib(file='files/bibliography.bib')
+ sapply(purrr::pluck, 'Package') %>%
+ base::subset(!grepl('helpr|projectData|datarepository|project.notes.tools', .)) %>%
+ knitr::write_bib(file='files/software.bib')
 
-if(length(software_doi)>0)
-  software_doi %>%
-    rcrossref::cr_cn() %>%
-    lapply(paste, collapse=' ') %>%
-    unlist() %>%
-    write(file='files/bibliography.bib', append=TRUE)
+RefManageR::GetBibEntryWithDOI(doi=software_doi) %>%
+  RefManageR::WriteBib(file='files/software.bib', append=TRUE)
+
+sprintf(fmt='cd %s ; academic import --bibtex %s/files/software.bib --publication-dir publication/software --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
+
+#! write academic references
+
+RefManageR::GetBibEntryWithDOI(doi=academic_doi) %>%
+  RefManageR::WriteBib(file='files/academic.bib', append=FALSE)
+
+sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bib --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
