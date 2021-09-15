@@ -3,7 +3,8 @@ library(knitr)
 
 opts_knit$set(progress=TRUE, verbose=FALSE)
 
-opts_chunk$set(cache=TRUE, include=TRUE, eval=TRUE,
+opts_chunk$set(cache=TRUE, cache.path='knitr_cache/',
+               include=TRUE, eval=TRUE,
                warning=FALSE, message=FALSE, results='hold', comment='#', prompt=FALSE,
                fig.align='center',
                fig.width=20, fig.height=20, crop=TRUE,
