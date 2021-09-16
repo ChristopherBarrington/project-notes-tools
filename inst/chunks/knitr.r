@@ -20,6 +20,9 @@ opts_template$set(r=list(),
                   callout=list(cache=FALSE),
                   hidden=list(echo=FALSE),
                   print_code=list(eval=FALSE))
+#! modify hooks
+#! set cropping hook to crop all plots when `crop` is included in the chunk options
+knitr::knit_hooks$set(crop=knitr::hook_pdfcrop)
 
 #! modify plot hook to include a hyperlink to the output figures for each dev format
 local({
