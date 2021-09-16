@@ -10,7 +10,7 @@ if(length(software_doi)>0)
   RefManageR::GetBibEntryWithDOI(doi=software_doi) %>%
     RefManageR::WriteBib(bib=., file='files/software.bib', append=TRUE)
 
-sprintf(fmt='cd %s ; academic import --bibtex %s/files/software.bib --publication-dir publication/software --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
+sprintf(fmt='cd %s ; academic import --bibtex %s/files/software.bibtex --publication-dir publication/software --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
 
 #! write academic references
 
@@ -18,4 +18,4 @@ if(length(academic_doi)>1)
   RefManageR::GetBibEntryWithDOI(doi=academic_doi) %>%
     RefManageR::WriteBib(bib=., file='files/academic.bib', append=FALSE)
 
-sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bib --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
+sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bibtex --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
