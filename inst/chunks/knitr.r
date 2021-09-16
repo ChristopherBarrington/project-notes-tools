@@ -1,8 +1,11 @@
 #! setup knitr
 library(knitr)
 
+#! knitr options
 opts_knit$set(progress=TRUE, verbose=FALSE)
 
+#! global chunk options
+#! crop=TRUE : remove for no cropping, crop=FALSE is still interpreted as 'do cropping'
 opts_chunk$set(cache=TRUE, cache.path='knitr_cache/',
                include=TRUE, eval=TRUE,
                warning=FALSE, message=FALSE, results='hold', comment='#', prompt=FALSE,
@@ -10,6 +13,8 @@ opts_chunk$set(cache=TRUE, cache.path='knitr_cache/',
                fig.width=20, fig.height=20, crop=TRUE,
                dev=c('png','pdf'), dev.args=list(png=list(type='cairo')), dpi=150)
 
+#! define chunk templates
+#! specify with opts.label='r' in the chunk for example
 opts_template$set(r=list(),
                   bash=list(eval=FALSE),
                   callout=list(cache=FALSE),
@@ -28,15 +33,17 @@ local({
       do.call(what=htmltools::p) %>%
       as.character() -> download_links
 
+    #! for old installations, crop manually
     if(packageVersion('knitr')<'1.27') {
-      # define system commands to crop figures
+      #! define system commands to crop figures
       croppers <- list(pdf=function(f) sprintf(fmt='pdfcrop %s.pdf %s.pdf', f, f),
                        png=function(f) sprintf(fmt='convert -trim %s.png %s.png', f, f))
 
-      # crop figures
+      #! crop figures
       options$dev %>%
         lapply(function(dev) croppers[[dev]](f=figure_file_root) %>% system(ignore.stdout=TRUE, ignore.stderr=TRUE))
     }
+    #! ^^^ should become obsolete ^^^
 
     original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
 
