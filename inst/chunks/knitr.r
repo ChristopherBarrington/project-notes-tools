@@ -33,18 +33,6 @@ local({
       do.call(what=htmltools::p) %>%
       as.character() -> download_links
 
-    #! for old installations, crop manually
-    if(packageVersion('knitr')<'1.27') {
-      #! define system commands to crop figures
-      croppers <- list(pdf=function(f) sprintf(fmt='pdfcrop %s.pdf %s.pdf', f, f),
-                       png=function(f) sprintf(fmt='convert -trim %s.png %s.png', f, f))
-
-      #! crop figures
-      options$dev %>%
-        lapply(function(dev) croppers[[dev]](f=figure_file_root) %>% system(ignore.stdout=TRUE, ignore.stderr=TRUE))
-    }
-    #! ^^^ should become obsolete ^^^
-
     original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
 
 #! setup custom engines
