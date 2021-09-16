@@ -22,12 +22,12 @@ opts_template$set(r=list(),
                   print_code=list(eval=FALSE))
 #! modify hooks
 #! set cropping hook to crop all plots when `crop` is included in the chunk options
-knitr::knit_hooks$set(crop=knitr::hook_pdfcrop)
+knit_hooks$set(crop=hook_pdfcrop)
 
 #! modify plot hook to include a hyperlink to the output figures for each dev format
 local({
-  original_plot_hook <- knitr::knit_hooks$get('plot')
-  knitr::knit_hooks$set(plot=function(x, options) {
+  original_plot_hook <- knit_hooks$get('plot')
+  knit_hooks$set(plot=function(x, options) {
     figure_file_root <- sprintf(fmt='%s-%s', {file.path(options$fig.path, options$label) %>% str_replace_all('//', '/')}, options$fig.cur)
 
     options$dev %>%
