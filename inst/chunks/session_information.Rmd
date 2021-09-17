@@ -1,13 +1,14 @@
 <!-- Session information, automatically generated. Files for environment/knitr chunks are respecified.  -->
-## Session information
 
-{{< callout "automated" >}}
-The session information is automatically generated.
-{{< /callout >}}
+## Session information
 
 The below tabs show how the R environment was configured for this notebook.
 
 {{< spoiler text="Show session information" open=false >}}
+
+{{< callout "automated" >}}
+The session information is automatically generated.
+{{< /callout >}}
 
 {{< tabs "session-information-tabset" >}}
 {{< tab "R session" >}}
