@@ -8,14 +8,15 @@ sessionInfo()$otherPkgs %>%
 
 if(length(software_doi)>0)
   RefManageR::GetBibEntryWithDOI(doi=software_doi) %>%
-    RefManageR::WriteBib(bib=., file='files/software.bib', append=TRUE)
+    RefManageR::WriteBib(bib=., file='files/software.bibtex', append=TRUE)
 
 sprintf(fmt='cd %s ; academic import --bibtex %s/files/software.bibtex --publication-dir publication/software --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
 
 #! write academic references
 
-if(length(academic_doi)>1)
+if(length(academic_doi)>0) {
   RefManageR::GetBibEntryWithDOI(doi=academic_doi) %>%
-    RefManageR::WriteBib(bib=., file='files/academic.bib', append=FALSE)
+    RefManageR::WriteBib(bib=., file='files/academic.bibtex', append=FALSE)
 
-sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bibtex --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
+  sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bibtex --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
+}
