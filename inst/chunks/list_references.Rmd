@@ -1,0 +1,14 @@
+```{r list_references, cache=FALSE, echo=FALSE, results='asis', eval=length(academic_doi)>0}
+cat('## References\n\n')
+
+file.path(knitting_path, 'files', 'academic.bibtex') %>%
+  when(!file.exists(.)~stop('Could not read bibliography!'),
+       TRUE~.) %>%
+  RefManageR::ReadBib() %>%
+  names() %>%
+  str_replace_all(pattern='_', replacement='-') %>%
+  str_to_lower() %>%
+  file.path('publication','academic', .) %>%
+  sprintf(fmt='{{< cite page="%s" view="1" >}}\n') %>%
+  cat()
+```
