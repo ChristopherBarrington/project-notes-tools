@@ -10,5 +10,6 @@ file.path(knitting_path, 'files', 'academic.bibtex') %>%
   str_to_lower() %>%
   file.path('publication','academic', .) %>%
   sprintf(fmt='{{< cite page="%s" view="1" >}}\n') %>%
+  str_c(collapse='') %>%
   cat()
 ```
