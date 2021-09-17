@@ -4,7 +4,7 @@
 sessionInfo()$otherPkgs %>%
  sapply(purrr::pluck, 'Package') %>%
  base::subset(!grepl('helpr|projectData|datarepository|project.notes.tools', .)) %>%
- knitr::write_bib(file='files/software.bib')
+ knitr::write_bib(file='files/software.bibtex')
 
 if(length(software_doi)>0)
   RefManageR::GetBibEntryWithDOI(doi=software_doi) %>%
