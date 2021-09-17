@@ -17,7 +17,7 @@ sprintf(fmt='cd %s ; academic import --bibtex %s/files/software.bibtex --publica
 
 if(length(academic_doi)>0) {
   RefManageR::GetBibEntryWithDOI(doi=academic_doi) %>%
-    RefManageR::WriteBib(bib=., file='files/academic.bib', append=TRUE)
+    RefManageR::WriteBib(bib=., file='files/academic.bib', append=FALSE)
 
   file.rename(from='files/academic.bib', to='files/academic.bibtex')
   sprintf(fmt='cd %s ; academic import --bibtex %s/files/academic.bibtex --publication-dir publication/academic --no-overwrite', website_path, knitting_path) %>% system(ignore.stdout=TRUE)
