@@ -1,14 +1,14 @@
-```{r list_references, cache=FALSE, echo=FALSE, results='asis', eval=length(academic_doi)>0}
+```{r list_references, cache=FALSE, echo=FALSE, results='asis', eval=length(bibliography_doi)>0}
 cat('## References\n\n')
 
-file.path(knitting_path, 'files', 'academic.bibtex') %>%
+file.path(knitting_path, 'scratch', 'bibliography.bib') %>%
   when(!file.exists(.)~stop('Could not read bibliography!'),
        TRUE~.) %>%
   RefManageR::ReadBib() %>%
   names() %>%
   str_replace_all(pattern='_', replacement='-') %>%
   str_to_lower() %>%
-  file.path('publication','academic', .) %>%
+  file.path('publication', .) %>%
   sprintf(fmt='{{< cite page="%s" view="1" >}}\n') %>%
   str_c(collapse='') %>%
   cat()
