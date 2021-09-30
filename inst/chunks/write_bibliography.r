@@ -25,7 +25,7 @@
 # }
 
 #! write bibliography
-if(exists(bibliography_doi) && length(bibliography_doi)>0) {
+if(exists('bibliography_doi') && length(bibliography_doi)>0) {
   RefManageR::GetBibEntryWithDOI(doi=bibliography_doi) %>%
     RefManageR::WriteBib(bib=., file='scratch/bibliography.bib', append=FALSE)
 
