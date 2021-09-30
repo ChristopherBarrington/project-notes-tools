@@ -11,6 +11,7 @@ file.path(knitting_path, 'scratch', 'bibliography.bib') %>%
   names() %>%
   str_replace_all(pattern='_', replacement='-') %>%
   str_to_lower() %>%
+  str_replace_all('(:|/|\\.)+', '-') %>%
   file.path('publication', .) %>%
   sprintf(fmt='{{< cite page="%s" view="1" >}}\n') %>%
   str_c(collapse='') %>%
