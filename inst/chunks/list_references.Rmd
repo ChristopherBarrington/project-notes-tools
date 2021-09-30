@@ -1,5 +1,8 @@
 ```{r list_references, cache=FALSE, echo=FALSE, results='asis', eval=length(bibliography_doi)>0}
-cat('## References\n\n')
+opts_current$get('title') %>%
+  when(is.null(.) ~ 'References', TRUE~.) %>%
+  sprintf(fmt='## %s\n\n') %>%
+  cat()
 
 file.path(knitting_path, 'scratch', 'bibliography.bib') %>%
   when(!file.exists(.)~stop('Could not read bibliography!'),
