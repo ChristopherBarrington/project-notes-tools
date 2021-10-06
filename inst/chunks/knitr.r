@@ -40,5 +40,8 @@ local({
     original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
 
 #! setup custom engines
-knitr::knit_engines$set(method_section=function(options) {
-  sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})
+# knit_engines$set(method_section=function(options) {
+#   sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})
+
+#! write a yaml chunk
+knit_engines$set(yaml=function(options) options$code)
