@@ -44,4 +44,4 @@ local({
 #   sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})
 
 #! write a yaml chunk
-knit_engines$set(yaml=function(options) options$code)
+knit_engines$set(yaml=function(options) options$code %>% sprintf(fmt='%s\n') %>% c('```yaml\n', ., '```\n'))
