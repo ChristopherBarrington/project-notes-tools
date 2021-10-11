@@ -9,7 +9,7 @@ opts_knit$set(progress=TRUE, verbose=FALSE)
 opts_chunk$set(cache=TRUE, cache.path='knitr_cache/',
                include=TRUE, eval=TRUE,
                warning=FALSE, message=FALSE, results='hold', comment='#', prompt=FALSE,
-               fig.align='center',
+               fig.align='center', fig.show='asis',
                fig.width=20, fig.height=20, crop=TRUE,
                dev=c('png','pdf'), dev.args=list(png=list(type='cairo')), dpi=150)
 
