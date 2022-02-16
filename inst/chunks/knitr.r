@@ -1,4 +1,5 @@
 #! setup knitr
+library(htmltools)
 library(knitr)
 
 #! knitr options
@@ -32,9 +33,9 @@ local({
     figure_file_root <- sprintf(fmt='%s-%s', {file.path(options$fig.path, options$label) %>% str_replace_all('//', '/')}, options$fig.cur)
 
     options$dev %>%
-      lapply(function(dev) htmltools::a(href=sprintf(fmt='%s.%s', figure_file_root, dev), target='_blank', dev)) %>%
+      lapply(function(dev) a(href=sprintf(fmt='%s.%s', figure_file_root, dev), target='_blank', dev)) %>%
       append(list(class='figure_download_links', '- Download this figure:'), .) %>%
-      do.call(what=htmltools::p) %>%
+      do.call(what=p) %>%
       as.character() -> download_links
 
     original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
