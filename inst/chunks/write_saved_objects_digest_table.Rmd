@@ -1,0 +1,14 @@
+```{r write_saved_objects_digest_table}
+#| cache=FALSE,
+#| echo=FALSE,
+#| eval=opts_current$get('saved_objects') %>% is.null() %>% not(),
+
+# collect chunk options
+saved_objects <- opts_current$get('saved_objects')
+
+saved_objects %>%
+  set_names() %>%
+  ldply(.parallel=TRUE, function(x) get(x) %>% digest()) %>%
+  set_names(c('variable', 'md5 checksum')) %>%
+  kable(format=if_else(interactive(), 'markdown', 'html'))
+```
