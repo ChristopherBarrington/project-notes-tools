@@ -43,4 +43,4 @@ file.path(project_path, '.babs') %>%
 #! r options
 options(scipen=32,
         stringsAsFactors=FALSE,
-        width=ifelse(interactive(), get_screen_width(), 256))
+        width=ifelse(interactive(), helpr:::get_screen_width(), 256))
