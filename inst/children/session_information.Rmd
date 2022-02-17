@@ -79,7 +79,7 @@ The `R` environment was initially configured using:
 
 ```{r show_environment}
 #| cache=FALSE,
-#| code=readLines(system.file('chunks/environment.r', package='project.notes.tools'))}
+#| code=readLines(system.file('chunks/environment.r', package='project.notes.tools')),
 #| echo=TRUE,
 #| eval=FALSE,
 ```
