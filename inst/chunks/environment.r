@@ -29,6 +29,7 @@ system('hostname', intern=TRUE) %>%
 #! define paths for the project
 knitting_path <- getwd()
 website_path <- knitting_path %>% str_remove('/content/.*')
+content_path <- file.path(knitting_path, 'content')
 project_path <- knitting_path %>% str_split('/') %>% unlist() %>% head(n=10) %>% str_c(collapse='/')
 slug <- knitting_path %>% basename()
 
