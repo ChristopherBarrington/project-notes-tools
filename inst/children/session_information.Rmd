@@ -25,13 +25,14 @@ devtools::session_info() %>%
 
 <!--  -->
 
-{{< tab "Saved objects" >}}
-These objects have been saved into the project data package and can be loaded into a new R session using `data()`.
-
 ```{r show_md5sums_for_saved_objects}
 #| cache=FALSE,
 #| echo=FALSE,
 #| eval=opts_current$get('saved_objects') %>% is.null() %>% not()
+#| results='asis'
+
+cat('{{< tab "Saved objects" >}}\n')
+cat('These objects have been saved into the project data package and can be loaded into a new R session using `data()`.\n')
 
 saved_objects <- opts_current$get('saved_objects')
 
@@ -40,8 +41,9 @@ saved_objects %>%
   ldply(.parallel=TRUE, function(x) get(x) %>% digest()) %>%
   set_names(c('variable', 'md5 checksum')) %>%
   kable(format='html')
+
+cat('{{< /tab >}}\n')
 ```
-{{< /tab >}}
 
 <!--  -->
 
