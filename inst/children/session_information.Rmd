@@ -2,8 +2,6 @@
 
 ## Session information
 
-[project.notes.tools commit link]: `r packageDescription('project.notes.tools')[c('GithubUsername', 'GithubRepo', 'GithubSHA1')] %>% append(list(fmt='https://github.com/%s/%s/tree/%s')) %>% do.call(what=sprintf)`
-
 The below tabs show how the R environment was configured for this notebook.
 
 {{< spoiler text="Show session information" open=false >}}
@@ -14,7 +12,7 @@ The session information is automatically generated.
 
 {{< tabs "session-information-tabset" >}}
 {{< tab "R session" >}}
-A [session information file](files/session_information.yaml) with package versions is available in `yaml` format; this is the output of `devtools::session_info()`. The `conda` environment used to make this report was: ``r Sys.getenv('CONDA_PREFIX', unset='no conda environment prefix set!')``. The [`project.notes.tools` package][project.notes.tools commit link] version `r packageVersion('project.notes.tools')` (commit ID ``r packageDescription('project.notes.tools') %>% pluck('GithubSHA1') %>% str_trunc(width=6, ellipsis='')``).
+A [session information file](files/session_information.yaml) with package versions is available in `yaml` format; this is the output of `devtools::session_info()`. The `conda` environment used to make this report was: ``r Sys.getenv('CONDA_PREFIX', unset='no conda environment prefix set!')`` with the [`project.notes.tools` package](`r packageDescription('project.notes.tools')[c('GithubUsername', 'GithubRepo', 'GithubSHA1')] %>% append(list(fmt='https://github.com/%s/%s/tree/%s')) %>% do.call(what=sprintf)`) version `r packageVersion('project.notes.tools')` (commit ID ``r packageDescription('project.notes.tools') %>% pluck('GithubSHA1') %>% str_trunc(width=6, ellipsis='')``).
 
 ```{r write_session_information}
 #| cache=FALSE,
