@@ -28,7 +28,7 @@ devtools::session_info() %>%
 ```{r show_md5sums_for_saved_objects}
 #| cache=FALSE,
 #| echo=FALSE,
-#| eval=opts_current$get('saved_objects') %>% is.null() %>% not()
+#| eval=opts_current$get('saved_objects') %>% is.null() %>% not(),
 #| results='asis'
 
 cat('{{< tab "Saved objects" >}}\n')
