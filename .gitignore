@@ -35,3 +35,14 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 .DS_Store
+
+# R Environment Variables
+.Renviron
+
+# renv files
+renv/
+renv.lock
+
+# other files
+.DS_Store
+.babs
