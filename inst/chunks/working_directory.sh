@@ -1,1 +1,1 @@
-mkdir -p files scratch
+mkdir --parents files scratch

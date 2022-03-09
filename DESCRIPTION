@@ -1,6 +1,6 @@
 Package: project.notes.tools
 Title: Tools for project-notes
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
   person(given='Christopher',
     family='Barrington',
@@ -12,7 +12,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown=TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.2
 Depends:
   magrittr,
   R (>= 4.1.0)

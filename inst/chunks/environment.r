@@ -1,19 +1,22 @@
 #! R configuration; these should not need to be read to understand the later chunks
 
 #! load general libraries
-library(RColorBrewer)
+library(digest)
+library(doMC)
 library(grid)
 library(gridExtra)
 library(gtools)
-library(scales)
 library(kableExtra)
-library(patchwork)
 library(openxlsx)
+library(patchwork)
+library(RColorBrewer)
 library(rslurm)
 library(RefManageR)
+library(scales)
+library(yaml)
 
-library(helpr)
 library(datarepository)
+library(helpr)
 
 library(plyr)
 library(magrittr)
@@ -24,7 +27,7 @@ system('hostname', intern=TRUE) %>%
   str_remove('\\d+') %>%
   switch(babs=16, ca=32, gpu=32, hmem=96, 4) %T>%
   assign(x='ncores', envir=globalenv()) %>%
-  doMC::registerDoMC()
+  registerDoMC()
 
 #! define paths for the project
 knitting_path <- getwd()
@@ -35,9 +38,10 @@ slug <- knitting_path %>% basename()
 
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
-  when(file.exists(.)~yaml::read_yaml(.)[[1]], TRUE~list()) -> project_babs
+  when(file.exists(.)~read_yaml(.) %>% pluck(1),
+       TRUE~list()) -> project_babs
 
 #! r options
 options(scipen=32,
-        width=ifelse(interactive(), helpr:::get_screen_width(), 256),
-        stringsAsFactors=FALSE)
+        stringsAsFactors=FALSE,
+        width=ifelse(interactive(), helpr:::get_screen_width(), 256))

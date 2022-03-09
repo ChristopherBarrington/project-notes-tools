@@ -1,0 +1,40 @@
+```{r write_bibliography}
+#| cache=TRUE,
+#| echo=FALSE,
+#| eval=opts_current$get('bibliography_doi') %>% is.null() %>% not(),
+#| results='asis',
+# title='References'
+# title_depth=2
+
+# collect chunk options
+bibliography_doi <- opts_current$get(name='bibliography_doi')
+title <- opts_current$get(name='title') %>% if_else(is.null(.), 'References', .)
+title_depth <- opts_current$get(name='title_depth') %>% if_else(is.null(.), 2, .)
+
+# write the bibliography to file
+RefManageR::GetBibEntryWithDOI(doi=bibliography_doi) %>%
+  RefManageR::WriteBib(bib=., file=file.path(knitting_path, 'scratch', 'bibliography.bib'), append=FALSE)
+
+# create the publications content
+sprintf(fmt='cd %s ; academic import --bibtex %s/scratch/bibliography.bib --publication-dir publication --no-overwrite', website_path, knitting_path) %>%
+  system(ignore.stdout=TRUE)
+
+# print the markdown header
+strrep('#', times=title_depth) %>%
+  sprintf(fmt='%s %s\n\n', ., title) %>%
+  cat()
+
+# print the markdown bibliography
+file.path(knitting_path, 'scratch', 'bibliography.bib') %>%
+  when(!file.exists(.)~knit_exit('Could not read bibliography!'),
+       TRUE~.) %>%
+  RefManageR::ReadBib() %>%
+  names() %>%
+  str_replace_all(pattern='_', replacement='-') %>%
+  str_to_lower() %>%
+  str_replace_all('(:|/|\\.)+', '-') %>%
+  file.path('publication', .) %>%
+  sprintf(fmt='{{< cite page="%s" view="1" >}}\n') %>%
+  str_c(collapse='') %>%
+  cat()
+```
