@@ -14,8 +14,10 @@ LazyData: true
 Roxygen: list(markdown=TRUE)
 RoxygenNote: 7.0.2
 Depends:
-  helpr,
-  knitr (>= 1.37),
+  magrittr,
   R (>= 4.1.0)
+Imports:
+  helpr,
+  knitr (>= 1.37)
 Remotes:
-  ChristopherBarrington/helpr
+  github::ChristopherBarrington/helpr
