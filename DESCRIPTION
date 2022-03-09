@@ -2,11 +2,11 @@ Package: project.notes.tools
 Title: Tools for project-notes
 Version: 0.1.0
 Authors@R: 
-    person(given='Christopher',
-           family='Barrington',
-           role=c('aut', 'cre'),
-           email='christopher.barrington@crick.ac.uk',
-           comment = c(ORCID='0000-0003-1281-2658'))
+  person(given='Christopher',
+    family='Barrington',
+    role=c('aut', 'cre'),
+    email='christopher.barrington@crick.ac.uk',
+    comment = c(ORCID='0000-0003-1281-2658'))
 Description: Provides template chunks for project-tools. The RMarkdown reports can include external chunks in this package.
 License: GPL (>= 3)
 Encoding: UTF-8
@@ -14,5 +14,10 @@ LazyData: true
 Roxygen: list(markdown=TRUE)
 RoxygenNote: 7.0.2
 Depends:
-    knitr (>= 1.37)
-    R (>= 4.1.0)
+  magrittr,
+  R (>= 4.1.0)
+Imports:
+  helpr,
+  knitr (>= 1.37)
+Remotes:
+  github::ChristopherBarrington/helpr
