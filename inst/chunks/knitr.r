@@ -22,6 +22,7 @@ opts_template$set(r=list(),
                   hidden=list(echo=FALSE),
                   print_code=list(cache=FALSE, eval=FALSE),
                   batch_chunk=list(cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE))
+
 #! modify hooks
 #! set cropping hook to crop all plots when `crop` is included in the chunk options
 knit_hooks$set(crop=hook_pdfcrop)
