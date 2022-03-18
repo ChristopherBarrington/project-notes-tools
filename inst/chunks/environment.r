@@ -31,13 +31,6 @@ system('hostname', intern=TRUE) %>%
   assign(x='ncores', envir=globalenv()) %>%
   registerDoMC()
 
-#! define paths for the project
-knitting_path <- getwd()
-website_path <- knitting_path %>% str_remove('/content/.*')
-content_path <- file.path(knitting_path, 'content')
-project_path <- knitting_path %>% str_split('/') %>% unlist() %>% head(n=10) %>% str_c(collapse='/')
-slug <- knitting_path %>% basename()
-
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
   when(file.exists(.)~read_yaml(.) %>% pluck(1),
