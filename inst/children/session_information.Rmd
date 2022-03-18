@@ -40,7 +40,8 @@ saved_objects %>%
   set_names() %>%
   ldply(.parallel=TRUE, function(x) get(x) %>% digest()) %>%
   set_names(c('variable', 'md5 checksum')) %>%
-  kable(format='html')
+  mutate_at('md5 checksum', sprintf, fmt='`%s`') %>%
+  kable(format='markdown')
 
 cat('{{< /tab >}}\n')
 ```
