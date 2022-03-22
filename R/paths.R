@@ -10,11 +10,11 @@
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_remove
 #' 
-list(slug=function(...) getwd() %>% basename(),
-     knitting=function(...) getwd(),
-     content=function(...) getwd() %>% file.path(., 'content'),
-     website=function(...) getwd() %>% str_remove('/content/.*'),
-     project=function(...) system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
-     scientist=function(...) system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
-     lab=function(...) system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
-     projects=function(...) system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
+# list(slug=function(...) getwd() %>% basename(),
+#      knitting=function(...) getwd(),
+#      content=function(...) getwd() %>% file.path(., 'content'),
+#      website=function(...) getwd() %>% str_remove('/content/.*'),
+#      project=function(...) system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
+#      scientist=function(...) system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
+#      lab=function(...) system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
+#      projects=function(...) system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
