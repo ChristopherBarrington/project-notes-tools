@@ -10,8 +10,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_remove
 #' 
-#' @export
-#' 
 list(slug=function(...) getwd() %>% basename(),
      knitting=function(...) getwd(),
      content=function(...) getwd() %>% file.path(., 'content'),
