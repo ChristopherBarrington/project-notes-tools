@@ -1,18 +1,18 @@
 ```{r write_bibliography}
 #| cache=TRUE,
 #| echo=FALSE,
-#| eval=opts_current$get('bibliography_doi') %>% is.null() %>% not(),
+#| eval=opts_current$get('doi') %>% is.null() %>% not(),
 #| results='asis',
 # title='References'
 # title_depth=2
 
 # collect chunk options
-bibliography_doi <- opts_current$get(name='bibliography_doi')
+doi <- opts_current$get(name='doi')
 title <- opts_current$get(name='title') %>% if_else(is.null(.), 'References', .)
 title_depth <- opts_current$get(name='title_depth') %>% if_else(is.null(.), 2, .)
 
 # write the bibliography to file
-RefManageR::GetBibEntryWithDOI(doi=bibliography_doi) %>%
+RefManageR::GetBibEntryWithDOI(doi=doi) %>%
   RefManageR::WriteBib(bib=., file=file.path(project_paths$knitting, 'scratch', 'bibliography.bib'), append=FALSE)
 
 # create the publications content
