@@ -44,7 +44,7 @@ options(scipen=32,
 #! project paths
 list(slug=getwd() %>% basename(),
      knitting=getwd(),
-     content=getwd() %>% file.path(., 'content'),
+     content=getwd() %>% str_replace('(/content)/.*', '\\1'),
      website=getwd() %>% str_remove('/content/.*'),
      project=system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
      scientist=system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
