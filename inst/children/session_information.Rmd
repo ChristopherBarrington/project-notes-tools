@@ -18,7 +18,7 @@ A [session information file](files/session_information.yaml) with package versio
 #| cache=FALSE,
 #| echo=FALSE
 
-devtools::session_info() %>%
+devtools::session_info() %T>%
   yaml::write_yaml(file=file.path(project.notes.tools:::project_paths$knitting(), 'files', 'session_information.yaml'))
 ```
 {{< /tab >}}
