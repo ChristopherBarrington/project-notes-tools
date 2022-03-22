@@ -10,7 +10,7 @@
 doi <- opts_current$get(name='doi')
 title <- opts_current$get(name='title') %>% if_else(is.null(.), 'References', .)
 title_depth <- opts_current$get(name='title_depth') %>% if_else(is.null(.), 2, .)
-
+print(project_paths$knitting)
 # write the bibliography to file
 RefManageR::GetBibEntryWithDOI(doi=doi) %>%
   RefManageR::WriteBib(bib=., file=file.path(project_paths$knitting, 'scratch', 'bibliography.bib'), append=FALSE)
