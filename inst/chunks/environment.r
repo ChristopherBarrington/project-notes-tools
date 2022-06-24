@@ -3,6 +3,7 @@
 #! load general libraries
 library(digest)
 library(doMC)
+library(fs)
 library(grid)
 library(gridExtra)
 library(gtools)
