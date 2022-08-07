@@ -32,6 +32,9 @@ system('hostname', intern=TRUE) %>%
   assign(x='ncores', envir=globalenv()) %>%
   registerDoMC()
 
+#! add a path to the root of this project
+project_path <- system(command='pwd -P | cut -f 1-10 -d/', intern=TRUE)
+
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
   when(file.exists(.)~read_yaml(.) %>% pluck(1),
