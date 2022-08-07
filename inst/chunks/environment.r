@@ -41,14 +41,3 @@ file.path(project_path, '.babs') %>%
 options(scipen=32,
         stringsAsFactors=FALSE,
         width=ifelse(interactive(), helpr:::get_screen_width(), 256))
-
-#! project paths
-list(slug=getwd() %>% basename(),
-     knitting=getwd(),
-     content=getwd() %>% str_remove('/content/.*') %>% file.path(., 'content'),
-     website=getwd() %>% str_remove('/content/.*'),
-     analysis=system('pwd -P | cut -f 1-10 -d/', intern=TRUE) %>% file.path(., 'analysis'),
-     project=system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
-     scientist=system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
-     lab=system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
-     projects=system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
