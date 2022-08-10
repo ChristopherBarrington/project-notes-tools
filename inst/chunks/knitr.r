@@ -29,26 +29,27 @@ knit_hooks$set(crop=hook_pdfcrop)
 
 #! hook to add html tags before/after code chunk for hiding/showing chunk
 knit_hooks$set(fold_code=function(before, options, envir) {
-  if(before) {
-    options %>% pluck('engine') %>% sprintf(fmt='<details><summary>%s code</summary>') %>% return()
-  } else {
-    return('</details>\n')
-  }
+	if(before) {
+		options %>% pluck('engine') %>% sprintf(fmt='<details><summary>%s code</summary>') %>% return()
+	} else {
+		return('</details>\n')
+	}
 })
 
 #! modify plot hook to include a hyperlink to the output figures for each dev format
 local({
-  original_plot_hook <- knit_hooks$get('plot')
-  knit_hooks$set(plot=function(x, options) {
-    figure_file_root <- sprintf(fmt='%s-%s', {file.path(options$fig.path, options$label) %>% str_replace_all('//', '/')}, options$fig.cur)
+	original_plot_hook <- knit_hooks$get('plot')
+	knit_hooks$set(plot=function(x, options) {
+		figure_file_root <- sprintf(fmt='%s-%s', {file.path(options$fig.path, options$label) %>% str_replace_all('//', '/')}, options$fig.cur)
 
-    options$dev %>%
-      lapply(function(dev) a(href=sprintf(fmt='%s.%s', figure_file_root, dev), target='_blank', dev)) %>%
-      append(list(class='figure_download_links', '- Download this figure:'), .) %>%
-      do.call(what=p) %>%
-      as.character() -> download_links
+		options$dev %>%
+			lapply(function(dev) a(href=sprintf(fmt='%s.%s', figure_file_root, dev), target='_blank', dev)) %>%
+			append(list(class='figure_download_links', '- Download this figure:'), .) %>%
+			do.call(what=p) %>%
+			as.character() -> download_links
 
-    original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})})
+		original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})
+})
 
 #! setup custom engines
 # knit_engines$set(method_section=function(options) {
