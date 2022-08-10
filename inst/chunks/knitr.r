@@ -27,6 +27,15 @@ opts_template$set(r=list(),
 #! set cropping hook to crop all plots when `crop` is included in the chunk options
 knit_hooks$set(crop=hook_pdfcrop)
 
+#! hook to add html tags before/after code chunk for hiding/showing chunk
+knit_hooks$set(fold_code=function(before, options, envir) {
+  if(before) {
+    options %>% pluck('engine') %>% sprintf(fmt='<details><summary>%s code</summary>') %>% return()
+  } else {
+    return('</details>\n')
+  }
+})
+
 #! modify plot hook to include a hyperlink to the output figures for each dev format
 local({
   original_plot_hook <- knit_hooks$get('plot')
