@@ -34,6 +34,14 @@ system('hostname', intern=TRUE) %>%
 
 #! add a path to the root of this project
 project_path <- system(command='pwd -P | cut -f 1-10 -d/', intern=TRUE)
+list(slug=getwd() |> basename(),
+     knitting=getwd(),
+     content=getwd() |> str_remove('/content/.*') |> file.path('content'),
+     website=getwd() |> str_remove('/content/.*'),
+     project=system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
+     scientist=system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
+     lab=system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
+     projects=system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
 
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
@@ -44,13 +52,3 @@ file.path(project_path, '.babs') %>%
 options(scipen=32,
         stringsAsFactors=FALSE,
         width=ifelse(interactive(), helpr:::get_screen_width(), 256))
-
-#! a list of project paths
-list(slug=getwd() |> basename(),
-     knitting=getwd(),
-     content=getwd() |> str_remove('/content/.*') |> file.path('content'),
-     website=getwd() |> str_remove('/content/.*'),
-     project=system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
-     scientist=system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
-     lab=system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
-     projects=system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
