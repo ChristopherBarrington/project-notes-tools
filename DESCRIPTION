@@ -17,5 +17,6 @@ Depends:
   magrittr,
   R (>= 4.1.0)
 Imports:
-  knitr (>= 1.37)
+  knitr (>= 1.37),
+  stringr
 Remotes:
