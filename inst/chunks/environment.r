@@ -41,7 +41,9 @@ list(slug=getwd() |> basename(),
      project=system('pwd -P | cut -f 1-10 -d/', intern=TRUE),
      scientist=system('pwd -P | cut -f 1-9 -d/', intern=TRUE),
      lab=system('pwd -P | cut -f 1-8 -d/', intern=TRUE),
-     projects=system('pwd -P | cut -f 1-7 -d/', intern=TRUE)) -> project_paths
+     projects=system('pwd -P | cut -f 1-7 -d/', intern=TRUE),
+     dropbox_project=system('pwd -P | cut --fields 7-10 --delimiter /', intern=TRUE),
+     dropbox_complete=system('pwd -P | cut --fields 1-6 --complement --delimiter /', intern=TRUE)) -> project_paths
 
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
