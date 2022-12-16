@@ -1,5 +1,4 @@
 ```{r write_bibliography}
-#| cache=TRUE,
 #| echo=FALSE,
 #| eval=opts_current$get('doi') %>% is.null() %>% not(),
 #| results='asis',
