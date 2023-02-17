@@ -36,14 +36,14 @@ system('hostname', intern=TRUE) %>%
 project_path <- system(command='pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE)
 list(slug=getwd() |> basename(),
      knitting=getwd(),
-     content=getwd() |> str_remove('/content/.*') |> file.path('content'),
-     website=getwd() |> str_remove('/content/.*'),
      project=system('pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE),
      scientist=system('pwd -P | cut --fields 1-9 --delimiter /', intern=TRUE),
      lab=system('pwd -P | cut --fields 1-8 --delimiter /', intern=TRUE),
      projects=system('pwd -P | cut --fields 1-7 --delimiter /', intern=TRUE),
      dropbox_project=system('pwd -P | cut --fields 7-10 --delimiter /', intern=TRUE),
-     dropbox_complete=system('pwd -P | cut --fields 1-6 --complement --delimiter /', intern=TRUE)) -> project_paths
+     dropbox_complete=system('pwd -P | cut --fields 1-6 --complement --delimiter /', intern=TRUE)) |>
+     {\(x) list_modify(x, website=file.path(x$project, 'project-notes'))}() |>
+     {\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
 
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>%
