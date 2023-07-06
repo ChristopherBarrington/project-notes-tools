@@ -1,6 +1,6 @@
 ```{r write_bibliography}
 #| echo=FALSE,
-#| eval=opts_current$get('doi') %>% is.null() %>% not(),
+#| eval=(opts_current$get('doi') %>% is.null() %>% not()) || (opts_current$get('use_existing_bib') %>% if_else(is.null(.), FALSE, .) %>% equals(TRUE)),
 #| results='asis',
 # title='References'
 # title_depth=2
