@@ -4,15 +4,19 @@
 #| results='asis',
 # title='References'
 # title_depth=2
+# use_existing_bib=FALSE
 
 # collect chunk options
 doi <- opts_current$get(name='doi')
 title <- opts_current$get(name='title') %>% if_else(is.null(.), 'References', .)
 title_depth <- opts_current$get(name='title_depth') %>% if_else(is.null(.), 2, .)
+use_existing_bib <- opts_current$get(name='use_existing_bib') %>% if_else(is.null(.), FALSE, TRUE)
 
-# write the bibliography to file
-RefManageR::GetBibEntryWithDOI(doi=doi) %>%
-  RefManageR::WriteBib(bib=., file=file.path(project_paths$knitting, 'scratch', 'bibliography.bib'), append=FALSE)
+if(!use_existing_bib) {
+  # write the bibliography to file
+  RefManageR::GetBibEntryWithDOI(doi=doi) %>%
+    RefManageR::WriteBib(bib=., file=file.path(project_paths$knitting, 'scratch', 'bibliography.bib'), append=FALSE)
+}
 
 # create the publications content
 sprintf(fmt='cd %s ; academic import --bibtex %s/scratch/bibliography.bib --publication-dir publication --no-overwrite', project_paths$website, project_paths$knitting) %>%
