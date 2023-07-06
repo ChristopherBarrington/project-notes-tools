@@ -11,7 +11,7 @@ doi <- opts_current$get(name='doi')
 title <- opts_current$get(name='title') %>% if_else(is.null(.), 'References', .)
 title_depth <- opts_current$get(name='title_depth') %>% if_else(is.null(.), 2, .)
 use_existing_bib <- opts_current$get(name='use_existing_bib') %>% if_else(is.null(.), FALSE, .)
-print(use_existing_bib)
+
 if(!use_existing_bib) {
   # write the bibliography to file
   RefManageR::GetBibEntryWithDOI(doi=doi) %>%
