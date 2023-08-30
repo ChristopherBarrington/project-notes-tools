@@ -1,0 +1,37 @@
+## References {.appendix}
+
+::: {#refs}
+:::
+
+## Attachments {.appendix}
+
+```{r}
+#| echo: false
+#| results: asis
+files <- list.files('files')
+if(length(files) > 0) {
+	files |> basename() |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="\n")
+} else {
+	cat('No attachments to list.')
+}
+```
+
+## Package information {.appendix}
+
+[`renv`](https://github.com/rstudio/renv) (version `r packageVersion('renv')`) is used to manage package versions for this report. The <a href="files/renv.lock" target="_blank">`renv.lock`</a> file can be used to recreate the package environment.
+
+```{r write-lockfile}
+#| cache: false
+#| echo: false
+#| results: hide
+renv::snapshot(lockfile='files/renv.lock', update=TRUE, force=TRUE, prompt=FALSE)
+```
+
+<details><summary>Versions</summary>
+
+```{r}
+#| echo: false
+sessioninfo::session_info()
+```
+
+</details>
