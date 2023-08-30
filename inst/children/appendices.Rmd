@@ -5,7 +5,7 @@
 
 ## Attachments {.appendix}
 
-```{r}
+```{r appendix-attachments}
 #| echo: false
 #| results: asis
 files <- list.files('files')
@@ -20,7 +20,7 @@ if(length(files) > 0) {
 
 [`renv`](https://github.com/rstudio/renv) (version `r packageVersion('renv')`) is used to manage package versions for this report. The <a href="files/renv.lock" target="_blank">`renv.lock`</a> file can be used to recreate the package environment.
 
-```{r write-lockfile}
+```{r appendix-lockfile}
 #| cache: false
 #| echo: false
 #| results: hide
@@ -29,7 +29,7 @@ renv::snapshot(lockfile='files/renv.lock', update=TRUE, force=TRUE, prompt=FALSE
 
 <details><summary>Versions</summary>
 
-```{r}
+```{r appendix-session-info}
 #| echo: false
 sessioninfo::session_info()
 ```
