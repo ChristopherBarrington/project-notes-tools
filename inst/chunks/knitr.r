@@ -54,9 +54,21 @@ local({
 })
 
 #! setup custom engines
-# knit_engines$set(method_section=function(options) {
-#   sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})
-
 #! write a yaml chunk
-knit_engines$set(yaml=function(options) options$code %>% sprintf(fmt='%s\n') %>% c('```yaml\n', ., '```\n'),
-                 json=function(options) options$code %>% sprintf(fmt='%s\n') %>% c('```json\n', ., '```\n'))
+yaml_engine <- function(options)
+	formatted_text_engine(options=options, language='yaml')
+
+#! write a json chunk
+json_engine <- function(options)
+	formatted_text_engine(options=options, language='json')
+
+#! write a generic chunk
+formatted_text_engine <- function(options, language='plain') {
+	options |> pluck('code-fold', .default='false') -> code_fold
+	options |> pluck('code-summary', .default='Code') -> code_summary
+	chunk_def <- sprintf(fmt='```{.%s .cell-code code-fold="%s" code-summary="%s"}\n', language, code_fold, code_summary)
+	options$code %>% sprintf(fmt='%s\n') %>% c(chunk_def, ., '```\n')
+}
+
+#! provide the above engines
+knit_engines$set(yaml=yaml_engine, json=json_engine)
