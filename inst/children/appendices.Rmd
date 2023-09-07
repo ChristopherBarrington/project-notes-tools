@@ -10,7 +10,7 @@
 #| results: asis
 files <- list.files('files')
 if(length(files) > 0) {
-	files |> basename() |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="\n")
+	files |> basename() |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
 	cat('No attachments to list.')
 }
