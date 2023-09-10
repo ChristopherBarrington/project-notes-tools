@@ -30,13 +30,10 @@ Depends:
   sessioninfo,
   stringr,
   yaml,
-
   helpr,
-
   plyr,
   magrittr,
   tidyverse,
-
   R (>= 4.1.0)
 Imports:
 Remotes:
