@@ -1,27 +1,27 @@
 #! R configuration; these should not need to be read to understand the later chunks
 
 #! load general libraries
-library(digest)
-library(doMC)
-library(fs)
-library(grid)
-library(gridExtra)
-library(gtools)
-library(kableExtra)
-library(openxlsx)
-library(patchwork)
-library(RColorBrewer)
-library(rslurm)
-library(RefManageR)
-library(scales)
-library(yaml)
+# library(digest)
+# library(doMC)
+# library(fs)
+# # library(grid)
+# # library(gridExtra)
+# library(gtools)
+# library(kableExtra)
+# library(openxlsx)
+# library(patchwork)
+# library(pins)
+# library(RColorBrewer)
+# library(rslurm)
+# library(scales)
+# library(yaml)
 
-library(datarepository)
-library(helpr)
+# # library(datarepository)
+# library(helpr)
 
-library(plyr)
-library(magrittr)
-library(tidyverse)
+# library(plyr)
+# library(magrittr)
+# library(tidyverse)
 
 #! configure multicore processing
 system('hostname', intern=TRUE) %>%
