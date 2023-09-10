@@ -1,28 +1,5 @@
 #! R configuration; these should not need to be read to understand the later chunks
 
-#! load general libraries
-# library(digest)
-# library(doMC)
-# library(fs)
-# # library(grid)
-# # library(gridExtra)
-# library(gtools)
-# library(kableExtra)
-# library(openxlsx)
-# library(patchwork)
-# library(pins)
-# library(RColorBrewer)
-# library(rslurm)
-# library(scales)
-# library(yaml)
-
-# # library(datarepository)
-# library(helpr)
-
-# library(plyr)
-# library(magrittr)
-# library(tidyverse)
-
 #! configure multicore processing
 system('hostname', intern=TRUE) %>%
   str_remove('\\d+') %>%
@@ -35,7 +12,6 @@ system('hostname', intern=TRUE) %>%
 #! add a path to the root of this project
 project_path <- system(command='pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE)
 list(slug=getwd() |> basename(),
-     knitting=getwd(),
      project=system('pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE),
      scientist=system('pwd -P | cut --fields 1-9 --delimiter /', intern=TRUE),
      lab=system('pwd -P | cut --fields 1-8 --delimiter /', intern=TRUE),
@@ -46,9 +22,11 @@ list(slug=getwd() |> basename(),
      {\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
 
 #! parse the .babs file, if it exists
-file.path(project_path, '.babs') %>%
-  when(file.exists(.)~read_yaml(.) %>% pluck(1),
-       TRUE~list()) -> project_babs
+file.path(project_path, '.babs') %>% (\(x)
+  switch(file.exists(x) |> as.character(),
+         `TRUE`={read_yaml(x) %>% pluck(1)},
+         `FALSE`={list()},
+         'error!')) -> project_babs
 
 #! r options
 options(scipen=32,
