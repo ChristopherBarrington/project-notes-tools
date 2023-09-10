@@ -23,7 +23,7 @@ Depends:
   knitr (>= 1.37),
   openxlsx,
   patchwork,
-  pins,
+  pins (== 1.2.2),
   RColorBrewer,
   rslurm,
   scales,
