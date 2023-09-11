@@ -1,6 +1,6 @@
 Package: project.notes.tools
 Title: Tools for project-notes
-Version: 0.1.6
+Version: 0.2.0
 Authors@R: 
   person(given='Christopher',
     family='Barrington',
@@ -14,9 +14,26 @@ LazyData: true
 Roxygen: list(markdown=TRUE)
 RoxygenNote: 7.1.2
 Depends:
+  digest,
+  doMC,
+  fs,
+  gtools,
+  htmltools,
+  kableExtra,
+  knitr (>= 1.37),
+  openxlsx,
+  patchwork,
+  pins (== 1.2.2),
+  RColorBrewer,
+  rslurm,
+  scales,
+  sessioninfo,
+  stringr,
+  yaml,
+  helpr,
+  plyr,
   magrittr,
+  tidyverse,
   R (>= 4.1.0)
 Imports:
-  knitr (>= 1.37),
-  stringr
 Remotes:

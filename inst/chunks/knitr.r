@@ -1,6 +1,4 @@
 #! setup knitr
-library(htmltools)
-library(knitr)
 
 #! knitr options
 opts_knit$set(progress=TRUE, verbose=FALSE)
