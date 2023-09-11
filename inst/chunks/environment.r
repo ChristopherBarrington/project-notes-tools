@@ -1,5 +1,7 @@
 #! R configuration; these should not need to be read to understand the later chunks
 
+require(project.notes.tools)
+
 #! configure multicore processing
 system('hostname', intern=TRUE) %>%
   str_remove('\\d+') %>%
