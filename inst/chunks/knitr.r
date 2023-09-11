@@ -1,5 +1,7 @@
 #! setup knitr
 
+require(project.notes.tools)
+
 #! knitr options
 opts_knit$set(progress=TRUE, verbose=FALSE)
 
