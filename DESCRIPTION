@@ -13,7 +13,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown=TRUE)
 RoxygenNote: 7.1.2
-Depends:
+IgnoredDepends:
   digest,
   doMC,
   fs,
@@ -22,18 +22,18 @@ Depends:
   kableExtra,
   knitr (>= 1.37),
   openxlsx,
-  #patchwork,
-  #pins,
-  #RColorBrewer,
-  #rslurm,
-  #scales,
-  #sessioninfo,
-  #stringr,
-  #yaml,
-  #helpr,
-  #plyr,
-  #magrittr,
-  #tidyverse,
+  patchwork,
+  pins,
+  RColorBrewer,
+  rslurm,
+  scales,
+  sessioninfo,
+  stringr,
+  yaml,
+  helpr,
+  plyr,
+  magrittr,
+  tidyverse,
   R (>= 4.1.0)
 Imports:
 Remotes:
