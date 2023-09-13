@@ -1,9 +1,11 @@
 
 ```{r appendices-bibliography}
 #| cache: false
-#| child: !expr system.file('children/bibliography.Rmd', package='project.notes.tools')
+#| child: !expr if(FALSE) system.file('children/bibliography.Rmd', package='project.notes.tools')
 #| include: false
 ```
+
+this is a test
 
 ## Attachments {.appendix}
 
