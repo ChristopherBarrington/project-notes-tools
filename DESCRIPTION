@@ -33,7 +33,7 @@ Depends:
   helpr,
   plyr,
   magrittr,
-  tidyverse,
+  #tidyverse,
   R (>= 4.1.0)
 Imports:
 Remotes:
