@@ -1,7 +1,9 @@
-## References {.appendix}
 
-::: {#refs}
-:::
+```{r appendices-bibliography}
+#| cache: false
+#| child: !expr system.file('children/bibliography.Rmd', package='project.notes.tools')
+#| include: false
+```
 
 ## Attachments {.appendix}
 
