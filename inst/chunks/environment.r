@@ -4,12 +4,12 @@ require(project.notes.tools)
 
 #! configure multicore processing
 system('hostname', intern=TRUE) %>%
-  str_remove('\\d+') %>%
-  switch(babs=8, ca=32, gpu=32, hmem=96, 4) %>%
-  Sys.getenv(x='SLURM_CPUS_PER_TASK') %>%
-  as.numeric() %T>%
-  assign(x='ncores', envir=globalenv()) %>%
-  registerDoMC()
+	str_remove('\\d+') %>%
+	switch(babs=8, ca=32, gpu=32, hmem=96, 4) %>%
+	Sys.getenv(x='SLURM_CPUS_PER_TASK') %>%
+	as.numeric() %T>%
+	assign(x='ncores', envir=globalenv()) %>%
+	registerDoMC()
 
 #! add a path to the root of this project
 project_path <- system(command='pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE)
@@ -25,10 +25,11 @@ list(slug=getwd() |> basename(),
 
 #! parse the .babs file, if it exists
 file.path(project_path, '.babs') %>% (\(x)
-  switch(file.exists(x) |> as.character(),
-         `TRUE`={read_yaml(x) %>% pluck(1)},
-         `FALSE`={list()},
-         'error!')) -> project_babs
+	switch(file.exists(x) |> as.character(),
+	       `TRUE`={read_yaml(x) %>% pluck(1)},
+	       `FALSE`={list()},
+	       'error!')) -> project_babs
+
 
 #! r options
 options(scipen=32,
