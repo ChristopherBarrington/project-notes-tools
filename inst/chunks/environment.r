@@ -31,8 +31,7 @@ file.path(project_path, '.babs') %>% (\(x)
 	       'error!')) -> project_babs
 
 # connect to the project's pins board
-project_path %>%
-	path('pinboard') %>% (\(x)
+path('pinboard') %>% (\(x)
 	switch(file.exists(x) |> as.character(),
 	       `TRUE`=board_folder(x),
 	       `FALSE`=NULL)) -> pinboard
