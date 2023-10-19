@@ -8,7 +8,7 @@
 ```{r appendix-attachments}
 #| echo: false
 #| results: asis
-files <- list.files('files')
+files <- list.files('files') |> stringr::str_subset('renv.lock', negate=TRUE)
 if(length(files) > 0) {
 	files |> basename() |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
