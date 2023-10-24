@@ -50,7 +50,7 @@ local({
 			do.call(what=str_c) -> download_links
 
 		# modify the incoming options
-		options$fig.cap %<>% str_c(download_links, sep=' ')
+		options$fig.cap %<>% str_c(download_links, '\n\n', sep=' ')
 
 		# create the markdown
 		original_plot_hook(x, options)})
