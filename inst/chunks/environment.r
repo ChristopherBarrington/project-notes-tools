@@ -14,7 +14,7 @@ library(RColorBrewer)
 library(rslurm)
 library(RefManageR)
 library(scales)
-library(usethis)
+libray(usethis)
 library(yaml)
 
 library(datarepository)
