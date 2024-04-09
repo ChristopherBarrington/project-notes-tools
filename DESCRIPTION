@@ -29,6 +29,7 @@ Depends:
   scales,
   sessioninfo,
   stringr,
+  usethis,
   yaml,
   helpr,
   plyr,
