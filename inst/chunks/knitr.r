@@ -1,6 +1,6 @@
 #! setup knitr
-library(htmltools)
-library(knitr)
+
+require(project.notes.tools)
 
 #! knitr options
 opts_knit$set(progress=TRUE, verbose=FALSE)
@@ -38,25 +38,40 @@ knit_hooks$set(fold_code=function(before, options, envir) {
 	}
 })
 
-#! modify plot hook to include a hyperlink to the output figures for each dev format
+#! modify plot hook to include a hyperlink to the output figures for each dev format in the caption
 local({
 	original_plot_hook <- knit_hooks$get('plot')
 	knit_hooks$set(plot=function(x, options) {
+		# make markdown links to the rendered figure files
 		figure_file_root <- sprintf(fmt='%s-%s', {file.path(options$fig.path, options$label) %>% str_replace_all('//', '/')}, options$fig.cur)
-
 		options$dev %>%
-			lapply(function(dev) a(href=sprintf(fmt='%s.%s', figure_file_root, dev), target='_blank', dev)) %>%
-			append(list(class='figure_download_links', '- Download this figure:'), .) %>%
-			do.call(what=p) %>%
-			as.character() -> download_links
+			lapply(function(dev) sprintf(fmt='[%s](%s.%s)', dev, figure_file_root, dev)) %>%
+			append(list(sep=' ', 'Download this figure:'), .) %>%
+			do.call(what=str_c) -> download_links
 
-		original_plot_hook(x, options) %>% str_c(download_links, sep='\n')})
+		# modify the incoming options
+		options$fig.cap %<>% str_c(download_links, sep=' ')
+
+		# create the markdown
+		original_plot_hook(x, options) %>% str_c('\n\n')})
 })
 
 #! setup custom engines
-# knit_engines$set(method_section=function(options) {
-#   sprintf(fmt='<div class="method_section">%s</div>', options$colour, options$code)})
-
 #! write a yaml chunk
-knit_engines$set(yaml=function(options) options$code %>% sprintf(fmt='%s\n') %>% c('```yaml\n', ., '```\n'),
-                 json=function(options) options$code %>% sprintf(fmt='%s\n') %>% c('```json\n', ., '```\n'))
+yaml_engine <- function(options)
+	formatted_text_engine(options=options, language='yaml')
+
+#! write a json chunk
+json_engine <- function(options)
+	formatted_text_engine(options=options, language='json')
+
+#! write a generic chunk
+formatted_text_engine <- function(options, language='plain') {
+	options |> pluck('code-fold', .default='false') -> code_fold
+	options |> pluck('code-summary', .default='Code') -> code_summary
+	chunk_def <- sprintf(fmt='```{.%s .cell-code code-fold="%s" code-summary="%s"}\n', language, code_fold, code_summary)
+	options$code %>% sprintf(fmt='%s\n') %>% c(chunk_def, ., '```\n')
+}
+
+#! provide the above engines
+knit_engines$set(yaml=yaml_engine, json=json_engine)
