@@ -21,11 +21,11 @@ list(project='1-10',
      projects='1-7',
      dropbox_project='7-10',
      dropbox_complete='1-6 --complement') |>
-     lapply(sprintf, fmt='pwd -P | cut --delimiter / --fields %s') |>
-     lapply(system, intern=TRUE) |>
-     list_modify(slug=getwd() |> basename()) |>
-     {\(x) list_modify(x, website=file.path(x$project, 'project-notes'))}() |>
-     {\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
+	lapply(sprintf, fmt='pwd -P | cut --delimiter / --fields %s') |>
+	lapply(system, intern=TRUE) |>
+	list_modify(slug=getwd() |> basename()) |>
+	{\(x) list_modify(x, website=file.path(x$project, 'project-notes'))}() |>
+	{\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
 
 ## ---- parse the .babs file, if it exists
 project_paths |>
