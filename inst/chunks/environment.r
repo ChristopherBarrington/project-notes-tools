@@ -12,13 +12,13 @@ system('hostname', intern=TRUE) %>%
 	registerDoMC()
 
 #! add a path to the root of this project
-project_path <- system(command='pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE)
-list(project='pwd -P | cut --fields 1-10 --delimiter /',
-     scientist='pwd -P | cut --fields 1-9 --delimiter /',
-     lab='pwd -P | cut --fields 1-8 --delimiter /',
-     projects='pwd -P | cut --fields 1-7 --delimiter /',
-     dropbox_project='pwd -P | cut --fields 7-10 --delimiter /',
-     dropbox_complete='pwd -P | cut --fields 1-6 --complement --delimiter /') |>
+list(project='1-10',
+     scientist='1-9',
+     lab='1-8',
+     projects='1-7',
+     dropbox_project='7-10',
+     dropbox_complete='1-6 --complement') |>
+     lapply(sprintf, fmt='pwd -P | cut --delimiter / --fields %s') |>
      lapply(system, intern=TRUE) |>
      list_modify(slug=getwd() |> basename()) |>
      {\(x) list_modify(x, website=file.path(x$project, 'project-notes'))}() |>
