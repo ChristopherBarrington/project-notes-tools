@@ -13,13 +13,14 @@ system('hostname', intern=TRUE) %>%
 
 #! add a path to the root of this project
 project_path <- system(command='pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE)
-list(slug=getwd() |> basename(),
-     project=system('pwd -P | cut --fields 1-10 --delimiter /', intern=TRUE),
-     scientist=system('pwd -P | cut --fields 1-9 --delimiter /', intern=TRUE),
-     lab=system('pwd -P | cut --fields 1-8 --delimiter /', intern=TRUE),
-     projects=system('pwd -P | cut --fields 1-7 --delimiter /', intern=TRUE),
-     dropbox_project=system('pwd -P | cut --fields 7-10 --delimiter /', intern=TRUE),
-     dropbox_complete=system('pwd -P | cut --fields 1-6 --complement --delimiter /', intern=TRUE)) |>
+list(project='pwd -P | cut --fields 1-10 --delimiter /',
+     scientist='pwd -P | cut --fields 1-9 --delimiter /',
+     lab='pwd -P | cut --fields 1-8 --delimiter /',
+     projects='pwd -P | cut --fields 1-7 --delimiter /',
+     dropbox_project='pwd -P | cut --fields 7-10 --delimiter /',
+     dropbox_complete='pwd -P | cut --fields 1-6 --complement --delimiter /') |>
+     lapply(system, intern=TRUE) |>
+     list_modify(slug=getwd() |> basename()) |>
      {\(x) list_modify(x, website=file.path(x$project, 'project-notes'))}() |>
      {\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
 
