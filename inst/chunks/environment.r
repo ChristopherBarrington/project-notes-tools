@@ -8,7 +8,7 @@ require(project.notes.tools)
 ## ---- configure multicore processing
 system('hostname', intern=TRUE) %>%
 	str_remove('\\d+') %>%
-	switch(babs=8, ca=32, gpu=32, hmem=96, 4) %>%
+	switch(babs=8, cn=32, gpu=32, nhmem=128, 4) %>%
 	Sys.getenv(x='SLURM_CPUS_PER_TASK') %>%
 	as.numeric() %T>%
 	assign(x='ncores', envir=globalenv()) %>%
