@@ -25,14 +25,18 @@ list(project='1-10',
      {\(x) list_modify(x, content=file.path(x$website, 'content'))}() -> project_paths
 
 #! parse the .babs file, if it exists
-file.path(project_path, '.babs') %>% (\(x)
+project_paths |>
+	pluck('project') |>
+	file.path('.babs') %>% (\(x)
 	switch(file.exists(x) |> as.character(),
 	       `TRUE`={read_yaml(x) %>% pluck(1)},
 	       `FALSE`={list()},
 	       'error!')) -> project_babs
 
 #! connect to the project's pins board
-path(project_path, 'pinboard') %>% (\(x)
+project_paths |>
+	pluck('project') |>
+	file.path('pinboard') %>% (\(x)
 	switch(dir.exists(x) |> as.character(),
 	       `TRUE`=board_folder(x),
 	       `FALSE`=NULL)) -> pinboard
