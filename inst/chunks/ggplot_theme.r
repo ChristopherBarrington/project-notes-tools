@@ -1,3 +1,7 @@
+# -----------------------------------------
+# define a generic customised ggplot theme
+# -----------------------------------------
+
 require(project.notes.tools)
 
 (theme_bw() +
