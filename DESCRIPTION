@@ -31,8 +31,11 @@ Depends:
   stringr,
   usethis,
   yaml,
+  helpr,
   plyr,
   magrittr,
   tidyverse,
   R (>= 4.1.0)
 Imports:
+Remotes:
+  github::ChristopherBarrington/helpr
