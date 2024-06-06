@@ -9,7 +9,7 @@
 #| echo: false
 #| results: asis
 
-opts_knit$get('quarto.dir') |>
+Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
 	file.path('files') |>
 	list.files() -> files
 
