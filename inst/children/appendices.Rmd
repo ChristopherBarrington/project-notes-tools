@@ -5,21 +5,16 @@
 
 ## Attachments {.appendix}
 
-The following files are associated with this report. `renv.lock` files can be used to re-create the R environment using `renv`. `.conda` files can be provided to create a conda environment.
-
-`r Sys.getenv(x='REPORT_PATH', unset='unset report_path')` is the `report_path`.
-`r Sys.getenv(x='ANALYSIS_PATH', unset='unset report_path')` is the `analysis_path`.
+The following files are associated with this report. `renv.lock` files can be used to recreate the R environment using `renv`, `*.conda` files can be provided to recreate a Conda environment.
 
 ```{r appendix-attachments}
 #| echo: false
 #| results: asis
 
-Sys.getenv(x='REPORT_PATH', unset='unset report_path') |> cat(sep='\n')
-
 Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
 	file.path('files') |>
 	list.files() -> files
-print(files)
+
 if(length(files) > 0) {
 	files |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
