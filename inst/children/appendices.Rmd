@@ -11,10 +11,12 @@ The following files are associated with this report. `renv.lock` files can be us
 #| echo: false
 #| results: asis
 
+Sys.getenv(x='REPORT_PATH', unset='unset report_path') |> cat(sep='\n')
+
 Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
 	file.path('files') |>
 	list.files() -> files
-
+print(files)
 if(length(files) > 0) {
 	files |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
