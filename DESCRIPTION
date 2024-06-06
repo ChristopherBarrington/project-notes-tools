@@ -19,6 +19,7 @@ Depends:
   fs,
   gtools,
   htmltools,
+  jsonlite,
   kableExtra,
   knitr (>= 1.37),
   openxlsx,
