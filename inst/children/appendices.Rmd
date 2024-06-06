@@ -1,0 +1,23 @@
+## References {.appendix}
+
+::: {#refs}
+:::
+
+## Attachments {.appendix}
+
+The following files are associated with this report. `renv.lock` files can be used to recreate the R environment using `renv`, `*.conda` files can be provided to recreate a Conda environment.
+
+```{r appendix-attachments}
+#| echo: false
+#| results: asis
+
+Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
+	file.path('files') |>
+	list.files() -> files
+
+if(length(files) > 0) {
+	files |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
+} else {
+	cat('No attachments to list.')
+}
+```
