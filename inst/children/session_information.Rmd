@@ -1,0 +1,92 @@
+<!-- Session information, automatically generated. Files for environment/knitr chunks are respecified.  -->
+
+## Session information
+
+The below tabs show how the R environment was configured for this notebook.
+
+{{< spoiler text="Show session information" open=false >}}
+
+{{< callout "automated" >}}
+The session information is automatically generated.
+{{< /callout >}}
+
+{{< tabs "session-information-tabset" >}}
+{{< tab "R session" >}}
+A [session information file](files/session_information.yaml) with package versions is available in `yaml` format; this is the output of `devtools::session_info()`. The `conda` environment used to make this report was: ``r Sys.getenv('CONDA_PREFIX', unset='no conda environment prefix set!')`` with the [`project.notes.tools` package](`r packageDescription('project.notes.tools')[c('GithubUsername', 'GithubRepo', 'GithubSHA1')] %>% append(list(fmt='https://github.com/%s/%s/tree/%s')) %>% do.call(what=sprintf)`) version `r packageVersion('project.notes.tools')` (commit ID ``r packageDescription('project.notes.tools') %>% pluck('GithubSHA1') %>% str_trunc(width=6, ellipsis='')``).
+
+```{r write_session_information}
+#| cache=FALSE,
+#| echo=FALSE
+
+devtools::session_info() %T>%
+  yaml::write_yaml(file=file.path(project_paths$knitting, 'files', 'session_information.yaml'))
+```
+{{< /tab >}}
+
+<!--  -->
+
+```{r show_md5sums_for_saved_objects}
+#| cache=FALSE,
+#| echo=FALSE,
+#| eval=opts_current$get('saved_objects') %>% is.null() %>% not(),
+#| results='asis'
+
+cat('{{< tab "Saved objects" >}}\n')
+cat('These objects have been saved into the project data package and can be loaded into a new R session using `data()`.\n')
+
+saved_objects <- opts_current$get('saved_objects')
+
+saved_objects %>%
+  set_names() %>%
+  ldply(.parallel=TRUE, function(x) get(x) %>% digest()) %>%
+  set_names(c('variable', 'md5 checksum')) %>%
+  mutate_at('md5 checksum', sprintf, fmt='`%s`') %>%
+  kable(format='markdown')
+
+cat('{{< /tab >}}\n')
+```
+
+<!--  -->
+
+{{< tab "Packages" >}}
+The following packages were loaded for this workbook:
+
+```{r show_load_workbook_packages}
+#| cache=FALSE,
+#| echo=TRUE,
+#| eval=FALSE,
+#| ref.label='load_workbook_packages'
+```
+
+{{< /tab >}}
+
+<!--  -->
+
+{{< tab "Plot theme" >}}
+The default `ggplot` theme was set accordingly:
+
+```{r show_global_ggplot_theme}
+#| cache=FALSE,
+#| echo=TRUE,
+#| eval=FALSE,
+#| ref.label='define_global_ggplot_theme'
+```
+{{< /tab >}}
+
+<!--  -->
+
+{{< tab "Environment" >}}
+The `R` environment was initially configured using:
+
+```{r show_environment}
+#| cache=FALSE,
+#| code=readLines(system.file('chunks/environment.r', package='project.notes.tools')),
+#| echo=TRUE,
+#| eval=FALSE,
+```
+{{< /tab >}}
+
+<!--  -->
+
+{{< /tabs >}}
+{{< /spoiler >}}
