@@ -5,6 +5,8 @@
 
 ## Attachments {.appendix}
 
+The following files are associated with this report. `renv.lock` files can be used to re-create the R environment using `renv`. `.conda` files can be provided to create a conda environment.
+
 ```{r appendix-attachments}
 #| echo: false
 #| results: asis
