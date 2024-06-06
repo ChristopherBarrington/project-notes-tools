@@ -8,9 +8,13 @@
 ```{r appendix-attachments}
 #| echo: false
 #| results: asis
-files <- list.files('files')
+
+opts_knit$get('quarto.dir') |>
+	file.path('files') |>
+	list.files() -> files
+
 if(length(files) > 0) {
-	files |> basename() |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
+	files |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
 	cat('No attachments to list.')
 }
