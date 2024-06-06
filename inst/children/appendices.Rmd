@@ -21,13 +21,3 @@ if(length(files) > 0) {
 	cat('No attachments to list.')
 }
 ```
-
-## Package information {.appendix}
-
-[`renv`](https://github.com/rstudio/renv) was used to manage package versions for this analysis. The <a href="files/renv.lock" target="_blank">`renv.lock`</a> file can be used to recreate the package environment.
-
-```{r appendix-session-info}
-#| code-summary: Package versions that created this report
-#| echo: false
-sessioninfo::session_info()
-```
