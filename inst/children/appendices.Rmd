@@ -13,7 +13,7 @@ The following file(s) are associated with this report.
 :::
 
 ```{r appendix-attachments}
-#| echo: true
+#| echo: false
 #| results: asis
 
 Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
