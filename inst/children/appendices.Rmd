@@ -20,6 +20,13 @@ Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
 	file.path('files') |>
 	list.files() -> files
 
+Sys.getenv(x='REPORT_PATH', unset=getwd()) |> print()
+Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
+	file.path('files') |> print()
+Sys.getenv(x='REPORT_PATH', unset=getwd()) |>
+	file.path('files') |>
+	list.files() |> print()
+
 if(length(files) > 0) {
 	files |> (\(x) sprintf(fmt="{{< fa paperclip >}} [%s](files/%s)", x, x))() |> cat(sep="</br>")
 } else {
