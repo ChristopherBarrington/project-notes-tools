@@ -1,11 +1,11 @@
 ## Appendices
 
-### References {.appendix}
+### References {.appendix .unnumbered}
 
 ::: {#refs}
 :::
 
-### Attachments {.appendix}
+### Attachments {.appendix .unnumbered}
 
 The following file(s) are associated with this report.
 
