@@ -7,6 +7,13 @@
 
 The following files are associated with this report. `renv.lock` files can be used to recreate the R environment using `renv`, `*.conda` files can be provided to recreate a Conda environment.
 
+```{bash copy-environments}
+#| echo: false
+
+mkdir --parents files \
+&& cp $ANALYSIS_PATH/envs/* $REPORT_PATH/$_/
+```
+
 ```{r appendix-attachments}
 #| echo: false
 #| results: asis
